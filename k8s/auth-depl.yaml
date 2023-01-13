@@ -15,12 +15,16 @@ spec:
       containers:
         - name: auth
           image: ybro22/ticketing-auth
-          volumeMounts:
-           - mountPath: /cache
-             name: cache-volume
-      volumes:
-        - name: cache-volume
-          emptyDir: {}
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
