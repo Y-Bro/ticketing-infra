@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: ybro22/ticketing-auth
+          volumeMounts:
+           - mountPath: /cache
+             name: cache-volume
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
