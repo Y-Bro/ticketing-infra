@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-depl
+specs:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels: 
+        app: auth
+    spec:
+      container:
+        - name: auth
+          image: ybro22/ticketing-auth
+        
